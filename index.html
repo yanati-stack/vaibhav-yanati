@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Data Engineer Portfolio | Enterprise Lakehouse & Streaming Architecture</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#0b0f19',
+                            900: '#070a12',
+                            950: '#03050a'
+                        },
+                        cyan: {
+                            400: '#00f2fe',
+                            500: '#00d8e6',
+                            900: '#004347'
+                        },
+                        blue: {
+                            500: '#4facfe',
+                            600: '#0066ff'
+                        },
+                        emerald: {
+                            400: '#34d399',
+                            500: '#10b981'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s infinite alternate'
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(0, 242, 254, 0.2)' },
+                            '100%': { boxShadow: '0 0 20px rgba(0, 242, 254, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #03050a;
+            color: #f3f4f6;
+        }
+        code, pre, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .bg-grid-pattern {
+            background-size: 36px 36px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .glass-panel {
+            background: rgba(11, 15, 25, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #03050a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-400 selection:text-slate-950 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80 px-4 lg:px-8 py-3 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 group-hover:scale-105 transition-transform">
+                    <i data-lucide="database" class="w-5 h-5"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-slate-100 tracking-wide text-lg leading-tight flex items-center gap-1.5">
+                        ALEX<span class="text-cyan-400">RIVER</span>
+                    </span>
+                    <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Sr. Data Engineer & Cloud Architect</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">Overview</a>
+                <a href="#simulator" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                    <span>Stream Simulator</span>
+                    <span class="px-1.5 py-0.5 text-[10px] rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">LIVE</span>
+                </a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">Tech Matrix</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="downloadResume()" class="px-4 py-2 rounded-lg text-xs font-semibold text-cyan-400 border border-cyan-500/40 hover:bg-cyan-500/10 transition-all flex items-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Resume</span>
+                </button>
+                <a href="#contact" class="px-4 py-2 rounded-lg text-xs font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 hover:opacity-90 transition-all shadow-lg shadow-cyan-500/20">
+                    Get in Touch
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-400 hover:text-white" aria-label="Toggle Menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden pt-4 pb-2 px-2 flex flex-col gap-3 border-t border-slate-800/60 mt-3">
+            <a href="#about" class="px-3 py-2 rounded hover:bg-slate-800 text-slate-300">Overview</a>
+            <a href="#simulator" class="px-3 py-2 rounded hover:bg-slate-800 text-cyan-400 font-medium">Stream Simulator (Interactive)</a>
+            <a href="#skills" class="px-3 py-2 rounded hover:bg-slate-800 text-slate-300">Tech Matrix</a>
+            <a href="#projects" class="px-3 py-2 rounded hover:bg-slate-800 text-slate-300">Projects</a>
+            <a href="#contact" class="px-3 py-2 rounded hover:bg-slate-800 text-slate-300">Contact</a>
+            <div class="pt-2 flex gap-2">
+                <button onclick="downloadResume()" class="w-full py-2 rounded text-xs text-center border border-cyan-500/40 text-cyan-400">Download Resume</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-grid-pattern overflow-hidden">
+        <div class="absolute inset-0 bg-radial-gradient from-cyan-500/10 via-transparent to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Column -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        <span>Enterprise Cloud Data Platforms & Lakehouse Solutions</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Architecting <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400">Enterprise Petabyte</span> Data Pipelines
+                    </h1>
+
+                    <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Senior Data Engineer specializing in Lakehouse platforms, Medallion Architecture (Bronze/Silver/Gold), PySpark streaming, Microsoft Fabric, Databricks, and automated data quality frameworks.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#simulator" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold text-sm hover:opacity-90 transition-all flex items-center gap-2 shadow-lg shadow-cyan-500/25">
+                            <i data-lucide="play" class="w-4 h-4 fill-slate-950"></i>
+                            Explore Architecture
+                        </a>
+                        <a href="#skills" class="px-6 py-3.5 rounded-xl glass-panel text-slate-200 font-semibold text-sm hover:border-cyan-500/50 transition-all flex items-center gap-2">
+                            <i data-lucide="cpu" class="w-4 h-4 text-cyan-400"></i>
+                            Skill Matrix
+                        </a>
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl glass-panel text-slate-200 font-semibold text-sm hover:border-cyan-500/50 transition-all flex items-center gap-2">
+                            <i data-lucide="folder-git-2" class="w-4 h-4 text-blue-400"></i>
+                            Live Demos
+                        </a>
+                    </div>
+
+                    <!-- Terminal Code Snippet Preview -->
+                    <div class="mt-6 p-4 rounded-xl glass-panel font-mono text-xs text-slate-300 border border-slate-800/80 shadow-2xl">
+                        <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-slate-500">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                <span class="ml-2 text-slate-400">streaming_medallion_pipeline.py</span>
+                            </div>
+                            <span class="text-[10px] text-cyan-400">DATABRICKS / SPARK 3.5</span>
+                        </div>
+                        <div class="space-y-1 text-slate-300">
+                            <p class="text-slate-500"># Cloud Streaming Ingestion via Event Hubs & Delta Lake</p>
+                            <p><span class="text-purple-400">stream_df</span> = spark.readStream.format(<span class="text-emerald-300">"kafka"</span>).option(<span class="text-emerald-300">"kafka.bootstrap.servers"</span>, event_hub_namespace).load()</p>
+                            <p><span class="text-purple-400">clean_df</span> = stream_df.selectExpr(<span class="text-emerald-300">"CAST(value AS STRING) as json"</span>).withWatermark(<span class="text-emerald-300">"event_time"</span>, <span class="text-emerald-300">"5 minutes"</span>)</p>
+                            <p><span class="text-cyan-400">clean_df</span>.writeStream.format(<span class="text-emerald-300">"delta"</span>).option(<span class="text-emerald-300">"checkpointLocation"</span>, checkpoint_path).toTable(<span class="text-emerald-300">"silver.telemetry_events"</span>)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero Column: Key Metrics Showcase -->
+                <div class="lg:col-span-5">
+                    <div class="grid grid-cols-2 gap-4">
+                        
+                        <!-- Metric Card 1 -->
+                        <div class="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-cyan-500/40 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight" id="metricSla">0</div>
+                            <div class="text-xs text-cyan-400 font-semibold uppercase tracking-wider mt-1">Pipeline Reliability</div>
+                            <p class="text-xs text-slate-400 mt-2">Uptime SLA across production cloud pipelines.</p>
+                        </div>
+
+                        <!-- Metric Card 2 -->
+                        <div class="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-blue-500/40 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i data-lucide="activity" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight" id="metricRecords">0</div>
+                            <div class="text-xs text-blue-400 font-semibold uppercase tracking-wider mt-1">Daily Records</div>
+                            <p class="text-xs text-slate-400 mt-2">Processed daily via streaming & batch jobs.</p>
+                        </div>
+
+                        <!-- Metric Card 3 -->
+                        <div class="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-emerald-500/40 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i data-lucide="zap" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight" id="metricOptimization">0</div>
+                            <div class="text-xs text-emerald-400 font-semibold uppercase tracking-wider mt-1">Cost & Query Reduction</div>
+                            <p class="text-xs text-slate-400 mt-2">Efficiency via Delta Lake Z-Ordering & pruning.</p>
+                        </div>
+
+                        <!-- Metric Card 4 -->
+                        <div class="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-purple-500/40 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight" id="metricLatency">&lt;1</div>
+                            <div class="text-xs text-purple-400 font-semibold uppercase tracking-wider mt-1">Sub-Minute Latency</div>
+                            <p class="text-xs text-slate-400 mt-2">Real-time telemetry streaming ingestion speed.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Architecture Simulator -->
+    <section id="simulator" class="py-20 border-t border-slate-800/80 bg-slate-900/40 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-3 border border-cyan-500/20">
+                    <i data-lucide="workflow" class="w-3.5 h-3.5"></i> Interactive Stream Processing
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Cloud Medallion Architecture Visualizer</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Simulate real-time enterprise streaming from cloud event hubs through Bronze, Silver, and Gold Delta Lake layers to BI dashboards.</p>
+            </div>
+
+            <!-- Simulator Control Panel & Live Canvas -->
+            <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+                <!-- Top Control Bar -->
+                <div class="p-4 bg-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <button id="simToggleBtn" onclick="toggleSimulator()" class="px-4 py-2 rounded-lg bg-cyan-400 text-slate-950 font-bold text-xs hover:bg-cyan-300 transition-all flex items-center gap-2">
+                            <i id="simPlayIcon" data-lucide="play" class="w-4 h-4 fill-slate-950"></i>
+                            <span id="simToggleText">Start Stream Flow</span>
+                        </button>
+                        <button onclick="resetSimulator()" class="px-3 py-2 rounded-lg border border-slate-700 text-slate-300 text-xs hover:bg-slate-800 transition-all flex items-center gap-1.5">
+                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                            Reset
+                        </button>
+                    </div>
+
+                    <!-- Live Stats Ribbon -->
+                    <div class="flex items-center gap-6 text-xs font-mono">
+                        <div>
+                            <span class="text-slate-500">Events Processed:</span>
+                            <span id="simEventCount" class="text-cyan-400 font-bold ml-1">0</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500">Throughput:</span>
+                            <span id="simThroughput" class="text-emerald-400 font-bold ml-1">0 msg/s</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500">Latency:</span>
+                            <span id="simLatency" class="text-purple-400 font-bold ml-1">12ms</span>
+                        </div>
+                        <div class="hidden sm:block">
+                            <span class="text-slate-500">Spark RAM:</span>
+                            <span id="simRam" class="text-blue-400 font-bold ml-1">3.2 GB / 32 GB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pipeline Stages Visualizer -->
+                <div class="p-6 lg:p-8 bg-slate-950/80">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                        
+                        <!-- Stage 1: Ingestion -->
+                        <div id="stageIngest" onclick="selectStage('ingest')" class="cursor-pointer p-4 rounded-xl bg-slate-900/90 border-2 border-slate-800 hover:border-cyan-400 transition-all relative overflow-hidden group">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/30 text-blue-400 font-mono text-[10px] font-semibold">1. INGESTION</span>
+                                <i data-lucide="radio" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-sm">Event Streaming</h3>
+                            <p class="text-[11px] text-slate-400 mt-1">Kafka, Azure Event Hubs & ADF pipelines.</p>
+                            <div class="mt-3 pt-2 border-t border-slate-800 text-[10px] font-mono flex justify-between text-slate-400">
+                                <span>Queue Depth:</span>
+                                <span class="text-blue-400" id="queueDepth">Normal</span>
+                            </div>
+                        </div>
+
+                        <!-- Stage 2: Bronze -->
+                        <div id="stageBronze" onclick="selectStage('bronze')" class="cursor-pointer p-4 rounded-xl bg-slate-900/90 border-2 border-cyan-500/30 hover:border-cyan-400 transition-all relative overflow-hidden group">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-[10px] font-semibold">2. BRONZE TIER</span>
+                                <i data-lucide="hard-drive" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-sm">Raw Lakehouse Store</h3>
+                            <p class="text-[11px] text-slate-400 mt-1">Append-only Delta table JSON telemetry.</p>
+                            <div class="mt-3 pt-2 border-t border-slate-800 text-[10px] font-mono flex justify-between text-slate-400">
+                                <span>Format:</span>
+                                <span class="text-amber-400">Delta / Parquet</span>
+                            </div>
+                            <div class="mt-2 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div id="barBronze" class="h-full bg-amber-400 w-0 transition-all duration-300"></div>
+                            </div>
+                        </div>
+
+                        <!-- Stage 3: Silver -->
+                        <div id="stageSilver" onclick="selectStage('silver')" class="cursor-pointer p-4 rounded-xl bg-slate-900/90 border-2 border-slate-800 hover:border-cyan-400 transition-all relative overflow-hidden group">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[10px] font-semibold">3. SILVER TIER</span>
+                                <i data-lucide="filter" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-sm">Cleaned & Conformed</h3>
+                            <p class="text-[11px] text-slate-400 mt-1">PySpark schema enforcement & deduplication.</p>
+                            <div class="mt-3 pt-2 border-t border-slate-800 text-[10px] font-mono flex justify-between text-slate-400">
+                                <span>Data Quality:</span>
+                                <span class="text-cyan-400">99.98% Passed</span>
+                            </div>
+                            <div class="mt-2 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div id="barSilver" class="h-full bg-cyan-400 w-0 transition-all duration-300"></div>
+                            </div>
+                        </div>
+
+                        <!-- Stage 4: Gold -->
+                        <div id="stageGold" onclick="selectStage('gold')" class="cursor-pointer p-4 rounded-xl bg-slate-900/90 border-2 border-slate-800 hover:border-emerald-400 transition-all relative overflow-hidden group">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[10px] font-semibold">4. GOLD TIER</span>
+                                <i data-lucide="bar-chart-3" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-sm">Curated Analytics Marts</h3>
+                            <p class="text-[11px] text-slate-400 mt-1">Aggregated datasets for Power BI & CJA.</p>
+                            <div class="mt-3 pt-2 border-t border-slate-800 text-[10px] font-mono flex justify-between text-slate-400">
+                                <span>DirectLake Mode:</span>
+                                <span class="text-emerald-400">Active</span>
+                            </div>
+                            <div class="mt-2 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div id="barGold" class="h-full bg-emerald-400 w-0 transition-all duration-300"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Dynamic Inspector Output -->
+                    <div class="mt-6 p-4 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs">
+                        <div class="flex items-center justify-between text-slate-400 pb-2 mb-2 border-b border-slate-800">
+                            <span class="flex items-center gap-2">
+                                <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
+                                Live Stream Payload Inspector: <span id="inspectorStageTitle" class="text-white font-bold">BRONZE TIER PAYLOAD</span>
+                            </span>
+                            <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">DELTA LAKE FORMAT</span>
+                        </div>
+                        <pre id="inspectorContent" class="text-emerald-400 overflow-x-auto p-3 bg-slate-950/70 rounded border border-slate-800/80">
+{
+  "event_id": "evt_99482012",
+  "ingested_utc": "2026-10-03T16:15:02.102Z",
+  "raw_body": "{\"user_guid\":\"usr_88392\",\"click_action\":\"purchase_checkout\",\"cart_value\":184.50}",
+  "source": "Azure_Event_Hubs_Clickstream",
+  "partition_key": "2026-10-03-16"
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Matrix Section -->
+    <section id="skills" class="py-20 border-t border-slate-800/80 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-3 border border-cyan-500/20">
+                        <i data-lucide="code-2" class="w-3.5 h-3.5"></i> Technical Matrix
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Cloud Data Engine & Stack Matrix</h2>
+                </div>
+
+                <!-- Skill Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="skillCategoryFilters">
+                    <button onclick="filterSkills('all')" class="skill-cat-btn active px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-cyan-400 text-slate-950 transition-all">All</button>
+                    <button onclick="filterSkills('compute')" class="skill-cat-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium glass-panel text-slate-300 hover:text-white transition-all">Compute & Engines</button>
+                    <button onclick="filterSkills('storage')" class="skill-cat-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium glass-panel text-slate-300 hover:text-white transition-all">Storage & Formats</button>
+                    <button onclick="filterSkills('orchestration')" class="skill-cat-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium glass-panel text-slate-300 hover:text-white transition-all">Pipelines & Governance</button>
+                    <button onclick="filterSkills('analytics')" class="skill-cat-btn px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium glass-panel text-slate-300 hover:text-white transition-all">Analytics & BI</button>
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="skillsGrid">
+                <!-- Javascript will dynamically inject skill items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 border-t border-slate-800/80 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-3 border border-cyan-500/20">
+                    <i data-lucide="folder-check" class="w-3.5 h-3.5"></i> Production Architectures
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Featured Data Engineering Projects</h2>
+                <p class="text-slate-400 text-sm mt-2">Scalable cloud implementations featuring Medallion Lakehouses, real-time streaming pipelines, and automated quality checks.</p>
+            </div>
+
+            <!-- Tag Filters -->
+            <div class="flex justify-center flex-wrap gap-2 mb-10" id="projectTagFilters">
+                <button onclick="filterProjects('all')" class="proj-tag-btn active px-4 py-2 rounded-xl text-xs font-medium bg-cyan-400 text-slate-950 transition-all">All Projects</button>
+                <button onclick="filterProjects('fabric')" class="proj-tag-btn px-4 py-2 rounded-xl text-xs font-medium glass-panel text-slate-300 hover:text-white transition-all">Microsoft Fabric & Delta</button>
+                <button onclick="filterProjects('streaming')" class="proj-tag-btn px-4 py-2 rounded-xl text-xs font-medium glass-panel text-slate-300 hover:text-white transition-all">Streaming & Kafka</button>
+                <button onclick="filterProjects('quality')" class="proj-tag-btn px-4 py-2 rounded-xl text-xs font-medium glass-panel text-slate-300 hover:text-white transition-all">Governance & Quality</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsGrid">
+                <!-- Dynamically Rendered Projects -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel max-w-2xl w-full rounded-2xl border border-slate-700 p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <span id="modalCategory" class="text-[10px] font-mono px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider font-semibold">Category</span>
+            <h3 id="modalTitle" class="text-2xl font-bold text-white">Project Title</h3>
+            <p id="modalDesc" class="text-slate-300 text-sm leading-relaxed">Detailed project description...</p>
+            
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                <h4 class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Key Architecture Specs:</h4>
+                <ul id="modalSpecs" class="list-disc list-inside text-xs text-slate-300 space-y-1"></ul>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+                <span id="modalMetrics" class="text-xs font-mono text-emerald-400 font-semibold"></span>
+                <button onclick="closeProjectModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-xs font-semibold text-white hover:bg-slate-700">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 border-t border-slate-800/80 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Info Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono border border-cyan-500/20">
+                        <i data-lucide="mail" class="w-3.5 h-3.5"></i> Let's Connect
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Need high-performance cloud data engineering?</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Whether you are migrating to Microsoft Fabric, tuning PySpark / Databricks workloads, or establishing automated Delta Lake quality checks, let's discuss your system architecture.
+                    </p>
+
+                    <!-- Contact Direct Cards -->
+                    <div class="space-y-3 pt-2">
+                        <div class="p-4 rounded-xl glass-panel flex items-center gap-4">
+                            <div class="p-3 rounded-lg bg-cyan-500/10 text-cyan-400">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Direct Email</div>
+                                <a href="mailto:alex.rivera.data@example.com" class="text-sm font-mono text-white hover:text-cyan-400">alex.rivera.data@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl glass-panel flex items-center gap-4">
+                            <div class="p-3 rounded-lg bg-emerald-500/10 text-emerald-400">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Location</div>
+                                <div class="text-sm font-medium text-white">Seattle, WA / Remote Global</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://github.com" target="_blank" class="p-3 rounded-xl glass-panel text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="p-3 rounded-xl glass-panel text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="p-3 rounded-xl glass-panel text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="p-6 sm:p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">YOUR NAME</label>
+                                <input type="text" required placeholder="Sarah Jenkins" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">EMAIL ADDRESS</label>
+                                <input type="email" required placeholder="sarah@enterprise.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">PROJECT / SYSTEM TYPE</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                                <option>Lakehouse Platform Architecture (Microsoft Fabric / Databricks)</option>
+                                <option>Real-Time Telemetry & Kafka Stream Pipeline</option>
+                                <option>PySpark Job Performance & Cost Optimization</option>
+                                <option>Automated Data Quality & Governance Framework</option>
+                                <option>Other Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">MESSAGE DETAILS</label>
+                            <textarea rows="4" required placeholder="Describe your data pipeline requirements or current latency bottlenecks..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>Send Inquiry Message</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800/80 bg-slate-950 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                © 2026 Alex Rivera. Senior Data Engineer & Enterprise Cloud Architect.
+            </div>
+            <div class="flex items-center gap-4 font-mono">
+                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Microsoft Fabric Lakehouse: Online</span>
+                <span>•</span>
+                <span>Delta Lake 3.2</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 2. Metric Counter Animation
+        function animateValue(id, start, end, duration, prefix = "", suffix = "") {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentVal = (progress * (end - start) + start).toFixed(1);
+                const displayVal = currentVal.endsWith('.0') ? Math.floor(currentVal) : currentVal;
+                obj.innerText = prefix + displayVal.toLocaleString() + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        window.onload = function() {
+            animateValue("metricSla", 0, 99.9, 1500, "", "%");
+            animateValue("metricRecords", 0, 10, 1500, "", "B+");
+            animateValue("metricOptimization", 0, 45, 1500, "", "%");
+            
+            renderSkills('all');
+            renderProjects('all');
+        };
+
+        // 3. Skills Matrix Data & Filtering
+        const skillsData = [
+            { name: 'PySpark 3.5', cat: 'compute', icon: 'zap', level: 'Expert' },
+            { name: 'Microsoft Fabric', cat: 'compute', icon: 'box', level: 'Expert' },
+            { name: 'Databricks', cat: 'compute', icon: 'layers', level: 'Expert' },
+            { name: 'Trino / Presto', cat: 'compute', icon: 'cpu', level: 'Advanced' },
+            
+            { name: 'Delta Lake 3.0', cat: 'storage', icon: 'database', level: 'Expert' },
+            { name: 'Apache Parquet', cat: 'storage', icon: 'file-text', level: 'Expert' },
+            { name: 'Azure Data Lake Gen2', cat: 'storage', icon: 'cloud', level: 'Expert' },
+            { name: 'Snowflake', cat: 'storage', icon: 'snowflake', level: 'Advanced' },
+            
+            { name: 'Azure Data Factory', cat: 'orchestration', icon: 'workflow', level: 'Expert' },
+            { name: 'Apache Kafka', cat: 'orchestration', icon: 'activity', level: 'Advanced' },
+            { name: 'Apache Airflow', cat: 'orchestration', icon: 'git-branch', level: 'Advanced' },
+            { name: 'dbt (data build tool)', cat: 'orchestration', icon: 'sliders', level: 'Expert' },
+            { name: 'Great Expectations', cat: 'orchestration', icon: 'shield-check', level: 'Advanced' },
+
+            { name: 'Power BI / DirectLake', cat: 'analytics', icon: 'bar-chart-2', level: 'Expert' },
+            { name: 'Advanced SQL / T-SQL', cat: 'analytics', icon: 'terminal', level: 'Expert' },
+            { name: 'Customer Journey Analytics', cat: 'analytics', icon: 'pie-chart', level: 'Advanced' }
+        ];
+
+        function renderSkills(filterCat) {
+            const container = document.getElementById('skillsGrid');
+            container.innerHTML = '';
+
+            const filtered = filterCat === 'all' ? skillsData : skillsData.filter(s => s.cat === filterCat);
+
+            filtered.forEach(s => {
+                const item = document.createElement('div');
+                item.className = "p-4 rounded-xl glass-panel border border-slate-800/80 hover:border-cyan-500/40 transition-all group flex flex-col justify-between";
+                item.innerHTML = `
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="p-2 rounded-lg bg-slate-900 text-cyan-400 group-hover:bg-cyan-500/10 transition-colors">
+                            <i data-lucide="${s.icon}" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/80 text-slate-400">${s.level}</span>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm text-white group-hover:text-cyan-400 transition-colors">${s.name}</div>
+                        <div class="text-[10px] font-mono text-slate-500 capitalize mt-0.5">${s.cat}</div>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+            lucide.createIcons();
+        }
+
+        function filterSkills(cat) {
+            document.querySelectorAll('.skill-cat-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-400', 'text-slate-950');
+                btn.classList.add('glass-panel', 'text-slate-300');
+            });
+            event.target.classList.remove('glass-panel', 'text-slate-300');
+            event.target.classList.add('bg-cyan-400', 'text-slate-950');
+            renderSkills(cat);
+        }
+
+        // 4. Projects Showcase Data & Modal Detail Views
+        const projectsData = [
+            {
+                id: 'proj1',
+                title: "Enterprise Web Analytics Clickstream Pipeline",
+                category: "fabric",
+                tech: ["Microsoft Fabric", "PySpark", "Delta Lake", "DirectLake"],
+                desc: "High-throughput web analytics lakehouse converting unstructured user event telemetry into hourly Parquet tables with predicate pushdown and Z-Ordering optimizations.",
+                specs: [
+                    "Hourly UTC partition compaction reducing small file overhead by 80%",
+                    "DirectLake integration with Power BI for sub-second visual queries",
+                    "Delta Lake Z-Ordering on user_guid and event_timestamp",
+                    "Zero-copy cloning for staging environments"
+                ],
+                metrics: "10B+ Monthly Records • 45% Query Latency Speedup"
+            },
+            {
+                id: 'proj2',
+                title: "High-Throughput Real-Time Telemetry Engine",
+                category: "streaming",
+                tech: ["Azure Event Hubs", "Apache Kafka", "PySpark Streaming", "Azure Schema Registry"],
+                desc: "Scalable streaming ingestion service capturing live web checkout & transaction streams with automated schema evolution and SLA monitoring.",
+                specs: [
+                    "Structured Streaming with 5-minute event watermark state handling",
+                    "Automated bad-record isolation into dead-letter storage queues",
+                    "End-to-end latency kept under 12 milliseconds at peak load",
+                    "Azure DevOps CI/CD pipeline for automated PySpark DAG deployments"
+                ],
+                metrics: "<15ms Stream Latency • 99.99% Operational SLA"
+            },
+            {
+                id: 'proj3',
+                title: "Cloud Data Quality & Validation Governance Engine",
+                category: "quality",
+                tech: ["Great Expectations", "PySpark Assertions", "dbt", "Synapse"],
+                desc: "Automated enterprise data governance layer executing declarative quality assertions on raw ingestion layers prior to Silver tier downstream publication.",
+                specs: [
+                    "Automated schema validation against JSON schema registries",
+                    "Anomalous metric alert dispatching via Webhooks to Slack/Teams",
+                    "Automated lineage mapping from Bronze landing to Gold marts",
+                    "Daily data health scorecard dashboards in Power BI"
+                ],
+                metrics: "Zero Unhandled Schema Drift • 100% Quality Visibility"
+            }
+        ];
+
+        function renderProjects(filterTag) {
+            const container = document.getElementById('projectsGrid');
+            container.innerHTML = '';
+
+            const filtered = filterTag === 'all' ? projectsData : projectsData.filter(p => p.category === filterTag);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "p-6 rounded-2xl glass-panel border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between group cursor-pointer";
+                card.onclick = () => openProjectModal(p.id);
+
+                const techBadges = p.tech.map(t => `<span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300 text-[11px] font-mono">${t}</span>`).join('');
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-mono px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider font-semibold">${p.category}</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-2">${p.title}</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">${p.desc}</p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            ${techBadges}
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
+                        <span class="text-emerald-400 font-semibold">${p.metrics}</span>
+                        <span class="text-slate-400 group-hover:text-cyan-400">Inspect Specs →</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function filterProjects(tag) {
+            document.querySelectorAll('.proj-tag-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-400', 'text-slate-950');
+                btn.classList.add('glass-panel', 'text-slate-300');
+            });
+            event.target.classList.remove('glass-panel', 'text-slate-300');
+            event.target.classList.add('bg-cyan-400', 'text-slate-950');
+            renderProjects(tag);
+        }
+
+        function openProjectModal(id) {
+            const proj = projectsData.find(p => p.id === id);
+            if (!proj) return;
+
+            document.getElementById('modalCategory').innerText = proj.category;
+            document.getElementById('modalTitle').innerText = proj.title;
+            document.getElementById('modalDesc').innerText = proj.desc;
+            document.getElementById('modalMetrics').innerText = proj.metrics;
+
+            const specsList = document.getElementById('modalSpecs');
+            specsList.innerHTML = proj.specs.map(s => `<li>${s}</li>`).join('');
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // 5. Architecture Simulator Logic
+        let simInterval = null;
+        let isSimRunning = false;
+        let eventCounter = 0;
+
+        function toggleSimulator() {
+            const btnText = document.getElementById('simToggleText');
+            const playIcon = document.getElementById('simPlayIcon');
+
+            if (!isSimRunning) {
+                isSimRunning = true;
+                btnText.innerText = "Pause Stream";
+                playIcon.setAttribute("data-lucide", "pause");
+                
+                simInterval = setInterval(() => {
+                    eventCounter += Math.floor(Math.random() * 80) + 40;
+                    document.getElementById('simEventCount').innerText = eventCounter.toLocaleString();
+                    document.getElementById('simThroughput').innerText = (Math.floor(Math.random() * 1500) + 3200) + " msg/s";
+                    document.getElementById('simLatency').innerText = (Math.floor(Math.random() * 6) + 8) + "ms";
+                    document.getElementById('simRam').innerText = ((Math.random() * 1.5) + 3.2).toFixed(1) + " GB / 32 GB";
+
+                    document.getElementById('barBronze').style.width = Math.min((eventCounter % 100), 100) + "%";
+                    document.getElementById('barSilver').style.width = Math.min(((eventCounter + 35) % 100), 100) + "%";
+                    document.getElementById('barGold').style.width = Math.min(((eventCounter + 70) % 100), 100) + "%";
+                }, 350);
+            } else {
+                isSimRunning = false;
+                btnText.innerText = "Resume Stream Flow";
+                playIcon.setAttribute("data-lucide", "play");
+                clearInterval(simInterval);
+            }
+            lucide.createIcons();
+        }
+
+        function resetSimulator() {
+            if (isSimRunning) toggleSimulator();
+            eventCounter = 0;
+            document.getElementById('simEventCount').innerText = "0";
+            document.getElementById('simThroughput').innerText = "0 msg/s";
+            document.getElementById('barBronze').style.width = "0%";
+            document.getElementById('barSilver').style.width = "0%";
+            document.getElementById('barGold').style.width = "0%";
+        }
+
+        const stagePayloads = {
+            ingest: {
+                title: "1. EVENT INGESTION (AZURE EVENT HUBS / KAFKA STREAM)",
+                json: `{\n  "event_id": "evt_kafka_${Math.floor(Math.random()*89999+10000)}",\n  "topic": "clickstream_web_production",\n  "partition": 4,\n  "offset": 8849201,\n  "timestamp": "${new Date().toISOString()}"\n}`
+            },
+            bronze: {
+                title: "2. BRONZE TIER PAYLOAD (RAW DELTA LANDING)",
+                json: `{\n  "event_id": "evt_kafka_99482",\n  "ingested_utc": "${new Date().toISOString()}",\n  "raw_body": "{\\"user_guid\\":\\"usr_88392\\",\\"click_action\\":\\"purchase_checkout\\",\\"cart_value\\":184.50}",\n  "source": "Azure_Event_Hubs",\n  "file_path": "abfss://bronze@fabric.dfs.core.windows.net/2026/10/03/part-001.parquet"\n}`
+            },
+            silver: {
+                title: "3. SILVER TIER PAYLOAD (CLEANED & SCHEMATIZED)",
+                json: `{\n  "event_id": "evt_kafka_99482",\n  "user_guid": "usr_88392",\n  "click_action": "purchase_checkout",\n  "cart_value_usd": 184.50,\n  "is_valid_user": true,\n  "watermark_timestamp": "${new Date().toISOString()}"\n}`
+            },
+            gold: {
+                title: "4. GOLD TIER PAYLOAD (CURATED ANALYTICS MART)",
+                json: `{\n  "hourly_utc": "2026-10-03 16:00:00",\n  "total_checkouts": 1420,\n  "gross_revenue_usd": 261990.00,\n  "avg_session_duration_sec": 142.5,\n  "direct_lake_synced": true\n}`
+            }
+        };
+
+        function selectStage(stage) {
+            ['Ingest', 'Bronze', 'Silver', 'Gold'].forEach(s => {
+                const el = document.getElementById('stage' + s);
+                el.classList.remove('border-cyan-400', 'border-amber-400', 'border-emerald-400', 'border-blue-400');
+                el.classList.add('border-slate-800');
+            });
+
+            const activeEl = document.getElementById('stage' + stage.charAt(0).toUpperCase() + stage.slice(1));
+            const activeColor = stage === 'ingest' ? 'border-blue-400' : stage === 'bronze' ? 'border-amber-400' : stage === 'silver' ? 'border-cyan-400' : 'border-emerald-400';
+            activeEl.classList.remove('border-slate-800');
+            activeEl.classList.add(activeColor);
+
+            document.getElementById('inspectorStageTitle').innerText = stagePayloads[stage].title;
+            document.getElementById('inspectorContent').innerText = stagePayloads[stage].json;
+        }
+
+        // 6. Resume Downloader
+        function downloadResume() {
+            const element = document.createElement("a");
+            const file = new Blob([
+                "ALEX RIVERA - SENIOR DATA ENGINEER & CLOUD ARCHITECT\n\n" +
+                "Summary:\nSenior Data Engineer specializing in Enterprise Lakehouse platforms, PySpark streaming, Microsoft Fabric, Databricks, and automated quality checks.\n\n" +
+                "Tech Stack:\nPySpark, Databricks, Microsoft Fabric, Delta Lake, Parquet, Kafka, Azure Data Factory, Power BI, SQL.\n"
+            ], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = "Alex_Rivera_Senior_Data_Engineer_Resume.txt";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // 7. Contact Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert("Thank you for reaching out! Alex will get back to you within 24 hours.");
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
