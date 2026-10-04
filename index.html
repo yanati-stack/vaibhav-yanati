@@ -104,7 +104,7 @@
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-slate-100 tracking-wide text-lg leading-tight flex items-center gap-1.5">
-                        VAIBHAV<span class="text-cyan-400">YANATI</span>
+                        Vaibhav<span class="text-cyan-400">Yanati</span>
                     </span>
                     <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Sr. Data Engineer & Cloud Architect</span>
                 </div>
@@ -128,7 +128,7 @@
                     <i data-lucide="download" class="w-4 h-4"></i>
                     <span>Resume</span>
                 </button>
-                <a href="mailto:vaibhavyanati@outlook.com" class="px-4 py-2 rounded-lg text-xs font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 hover:opacity-90 transition-all shadow-lg shadow-cyan-500/20">
+                <a href="#contact" class="px-4 py-2 rounded-lg text-xs font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 hover:opacity-90 transition-all shadow-lg shadow-cyan-500/20">
                     Get in Touch
                 </a>
             </div>
@@ -213,41 +213,47 @@
                 <!-- Right Hero Column: Key Metrics Showcase -->
                 <div class="lg:col-span-5">
                     <div class="grid grid-cols-2 gap-4">
+                        
+                        <!-- Metric Card 1 -->
                         <div class="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-cyan-500/40 transition-all group">
                             <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                 <i data-lucide="shield-check" class="w-5 h-5"></i>
                             </div>
-                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight">99.9%</div>
+                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight" id="metricSla">0</div>
                             <div class="text-xs text-cyan-400 font-semibold uppercase tracking-wider mt-1">Pipeline Reliability</div>
                             <p class="text-xs text-slate-400 mt-2">Uptime SLA across production cloud pipelines.</p>
                         </div>
 
+                        <!-- Metric Card 2 -->
                         <div class="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-blue-500/40 transition-all group">
                             <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                 <i data-lucide="activity" class="w-5 h-5"></i>
                             </div>
-                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight">500M+</div>
+                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight" id="metricRecords">0</div>
                             <div class="text-xs text-blue-400 font-semibold uppercase tracking-wider mt-1">Daily Records</div>
                             <p class="text-xs text-slate-400 mt-2">Processed daily via streaming & batch jobs.</p>
                         </div>
 
+                        <!-- Metric Card 3 -->
                         <div class="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-emerald-500/40 transition-all group">
                             <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                 <i data-lucide="zap" class="w-5 h-5"></i>
                             </div>
-                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight">40%</div>
+                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight" id="metricOptimization">0</div>
                             <div class="text-xs text-emerald-400 font-semibold uppercase tracking-wider mt-1">Cost & Query Reduction</div>
                             <p class="text-xs text-slate-400 mt-2">Efficiency via Delta Lake Z-Ordering & pruning.</p>
                         </div>
 
+                        <!-- Metric Card 4 -->
                         <div class="p-6 rounded-2xl glass-panel border border-slate-800 hover:border-purple-500/40 transition-all group">
                             <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                 <i data-lucide="clock" class="w-5 h-5"></i>
                             </div>
-                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight">&lt;1m</div>
+                            <div class="text-3xl lg:text-4xl font-extrabold text-white font-mono tracking-tight" id="metricLatency">&lt;1</div>
                             <div class="text-xs text-purple-400 font-semibold uppercase tracking-wider mt-1">Sub-Minute Latency</div>
                             <p class="text-xs text-slate-400 mt-2">Real-time telemetry streaming ingestion speed.</p>
                         </div>
+
                     </div>
                 </div>
 
@@ -419,7 +425,7 @@
 
             <!-- Skills Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="skillsGrid">
-                <!-- JavaScript will dynamically inject skill items -->
+                <!-- Javascript will dynamically inject skill items -->
             </div>
         </div>
     </section>
@@ -450,93 +456,441 @@
         </div>
     </section>
 
-    <!-- Contact / Footer Section -->
-    <footer id="contact" class="py-12 border-t border-slate-800 bg-slate-950 text-slate-400 text-xs">
-        <div class="max-w-7xl mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex flex-col gap-1 text-center md:text-left">
-                <span class="font-bold text-slate-200 text-sm">Vaibhav Yanati</span>
-                <p class="text-slate-500">Senior Data Engineer & Cloud Architecture Specialist</p>
+    <!-- Project Detail Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel max-w-2xl w-full rounded-2xl border border-slate-700 p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <span id="modalCategory" class="text-[10px] font-mono px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider font-semibold">Category</span>
+            <h3 id="modalTitle" class="text-2xl font-bold text-white">Project Title</h3>
+            <p id="modalDesc" class="text-slate-300 text-sm leading-relaxed">Detailed project description...</p>
+            
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                <h4 class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Key Architecture Specs:</h4>
+                <ul id="modalSpecs" class="list-disc list-inside text-xs text-slate-300 space-y-1"></ul>
             </div>
-            <div class="flex items-center gap-6">
-                <a href="mailto:vaibhavyanati@outlook.com" class="hover:text-cyan-400 transition-colors flex items-center gap-2 font-mono">
-                    <i data-lucide="mail" class="w-4 h-4"></i> vaibhavyanati@outlook.com
-                </a>
-                <button onclick="downloadResume()" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5 font-mono">
-                    <i data-lucide="file-text" class="w-4 h-4"></i> Download Resume
-                </button>
+
+            <div class="flex items-center justify-between pt-2">
+                <span id="modalMetrics" class="text-xs font-mono text-emerald-400 font-semibold"></span>
+                <button onclick="closeProjectModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-xs font-semibold text-white hover:bg-slate-700">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 border-t border-slate-800/80 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Info Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono border border-cyan-500/20">
+                        <i data-lucide="mail" class="w-3.5 h-3.5"></i> Let's Connect
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Need high-performance cloud data engineering?</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Whether you are migrating to Microsoft Fabric, tuning PySpark / Databricks workloads, or establishing automated Delta Lake quality checks, let's discuss your system architecture.
+                    </p>
+
+                    <!-- Contact Direct Cards -->
+                    <div class="space-y-3 pt-2">
+                        <div class="p-4 rounded-xl glass-panel flex items-center gap-4">
+                            <div class="p-3 rounded-lg bg-cyan-500/10 text-cyan-400">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Direct Email</div>
+                                <a href="mailto:VaibhavYanati@outlook.com" class="text-sm font-mono text-white hover:text-cyan-400">alex.rivera.data@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl glass-panel flex items-center gap-4">
+                            <div class="p-3 rounded-lg bg-emerald-500/10 text-emerald-400">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Location</div>
+                                <div class="text-sm font-medium text-white">Seattle, WA / Remote Global</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://github.com" target="_blank" class="p-3 rounded-xl glass-panel text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="p-3 rounded-xl glass-panel text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="p-3 rounded-xl glass-panel text-slate-300 hover:text-cyan-400 hover:border-cyan-500/40 transition-all">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="p-6 sm:p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">YOUR NAME</label>
+                                <input type="text" required placeholder="Sarah Jenkins" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">EMAIL ADDRESS</label>
+                                <input type="email" required placeholder="sarah@enterprise.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">PROJECT / SYSTEM TYPE</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                                <option>Lakehouse Platform Architecture (Microsoft Fabric / Databricks)</option>
+                                <option>Real-Time Telemetry & Kafka Stream Pipeline</option>
+                                <option>PySpark Job Performance & Cost Optimization</option>
+                                <option>Automated Data Quality & Governance Framework</option>
+                                <option>Other Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">MESSAGE DETAILS</label>
+                            <textarea rows="4" required placeholder="Describe your data pipeline requirements or current latency bottlenecks..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>Send Inquiry Message</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800/80 bg-slate-950 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                © 2026 Alex Rivera. Senior Data Engineer & Enterprise Cloud Architect.
+            </div>
+            <div class="flex items-center gap-4 font-mono">
+                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Microsoft Fabric Lakehouse: Online</span>
+                <span>•</span>
+                <span>Delta Lake 3.2</span>
             </div>
         </div>
     </footer>
 
-    <!-- Script Section for Interactions and Resume Download -->
     <script>
-        // Resume Download Logic via Base64 Encoding
-        function downloadResume() {
-            const resumeContent = `SUMMARY
-Senior Data Engineer with extensive experience transforming complex data into actionable business insights. Skilled in Azure Data Factory (ADF), Microsoft Fabric, Py-Spark, Power BI, Logic Apps, and PowerApps to design and deploy scalable, cloud-native data architectures. Expert in data engineering and digital analytics integration using Adobe Analytics and Customer Journey Analytics (CJA) to deliver comprehensive insights into customer behavior and revenue performance. Adept at implementing Medallion Architecture (Bronze/Silver/Gold) principles to ensure data quality and scalability.
-
-SKILLS
-Languages: PySpark, SQL, Python
-Data & Analytical Tools: Fabric Power BI, Tableau, Advanced Excel, Adobe Analytics, CJA
-Azure Data Engineering: Azure Fabric, ADF, Azure Data Lake Storage, Azure Synapse Analytics, Logic apps, Stream Analytics 
-Databases: Azure SQL Database, MongoDB, Data Warehouse
-Cloud & ETL: Microsoft Fabric, Azure, Databricks
-Data Modelling: Star Schema, Snowflake Schema
-Developer Tools: Azure portal, GitHub, VS Code, CI/CD, Git
-
-EXPERIENCE
-TCS – Microsoft
-Data Engineer | Web Data Analytics & Reporting | Redmond, WA | Nov 2024 – Present
-- Designed and implemented scalable data pipelines in Microsoft Fabric to process and analyze web interaction data.
-- Leveraged Medallion Architecture (Bronze -> Silver -> Gold) to organize and transform data efficiently.
-- Ingested raw clickstream data, applied sessionization logic, and curated datasets for KPI reporting.
-- Optimized performance using partitioning, Z-ordering, and data skipping.
-
-Data Engineer | Microsoft Digital stores Analytics & Reporting | Redmond, WA | Feb 2018 – Oct 2024
-- Supported various line of Business requests from category management teams (XBOX, PC, Windows, Surface, etc.).
-- Created daily, weekly, monthly reports and deployed them into Power BI.
-- Implemented data quality and performance tuning techniques across queries and pipelines.
-
-Mindtree – Microsoft 
-Data Analytical Engineer | Cloud Analytics | Redmond, WA | Apr 2016 – Jul 2017
-- Processed usage telemetry data across Azure platforms (Compute, Azure SQL, Storage).
-- Implemented data quality frameworks and automated Azure Data Factory pipelines.
-
-EDUCATION
-Anna University, CEG - Bachelor of Engineering, Material Science and Engineering
-
-CERTIFICATIONS
-- Azure AI Engineer Associate
-- Azure Developer Associate
-- Microsoft Certified Power BI
-- Microsoft Certified Azure Data Lake
-- Data Analytics Certified`;
-
-            const blob = new Blob([resumeContent], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Vaibhav_Yanati_Resume.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
         // Initialize Lucide Icons
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.lucide) {
-                lucide.createIcons();
-            }
+        lucide.createIcons();
+
+        // 1. Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Toggle Mobile Menu
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileBtn && mobileMenu) {
-            mobileBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+        // 2. Metric Counter Animation
+        function animateValue(id, start, end, duration, prefix = "", suffix = "") {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentVal = (progress * (end - start) + start).toFixed(1);
+                const displayVal = currentVal.endsWith('.0') ? Math.floor(currentVal) : currentVal;
+                obj.innerText = prefix + displayVal.toLocaleString() + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        window.onload = function() {
+            animateValue("metricSla", 0, 99.9, 1500, "", "%");
+            animateValue("metricRecords", 0, 10, 1500, "", "B+");
+            animateValue("metricOptimization", 0, 45, 1500, "", "%");
+            
+            renderSkills('all');
+            renderProjects('all');
+        };
+
+        // 3. Skills Matrix Data & Filtering
+        const skillsData = [
+            { name: 'PySpark 3.5', cat: 'compute', icon: 'zap', level: 'Expert' },
+            { name: 'Microsoft Fabric', cat: 'compute', icon: 'box', level: 'Expert' },
+            { name: 'Databricks', cat: 'compute', icon: 'layers', level: 'Expert' },
+            { name: 'Trino / Presto', cat: 'compute', icon: 'cpu', level: 'Advanced' },
+            
+            { name: 'Delta Lake 3.0', cat: 'storage', icon: 'database', level: 'Expert' },
+            { name: 'Apache Parquet', cat: 'storage', icon: 'file-text', level: 'Expert' },
+            { name: 'Azure Data Lake Gen2', cat: 'storage', icon: 'cloud', level: 'Expert' },
+            { name: 'Snowflake', cat: 'storage', icon: 'snowflake', level: 'Advanced' },
+            
+            { name: 'Azure Data Factory', cat: 'orchestration', icon: 'workflow', level: 'Expert' },
+            { name: 'Apache Kafka', cat: 'orchestration', icon: 'activity', level: 'Advanced' },
+            { name: 'Apache Airflow', cat: 'orchestration', icon: 'git-branch', level: 'Advanced' },
+            { name: 'dbt (data build tool)', cat: 'orchestration', icon: 'sliders', level: 'Expert' },
+            { name: 'Great Expectations', cat: 'orchestration', icon: 'shield-check', level: 'Advanced' },
+
+            { name: 'Power BI / DirectLake', cat: 'analytics', icon: 'bar-chart-2', level: 'Expert' },
+            { name: 'Advanced SQL / T-SQL', cat: 'analytics', icon: 'terminal', level: 'Expert' },
+            { name: 'Customer Journey Analytics', cat: 'analytics', icon: 'pie-chart', level: 'Advanced' }
+        ];
+
+        function renderSkills(filterCat) {
+            const container = document.getElementById('skillsGrid');
+            container.innerHTML = '';
+
+            const filtered = filterCat === 'all' ? skillsData : skillsData.filter(s => s.cat === filterCat);
+
+            filtered.forEach(s => {
+                const item = document.createElement('div');
+                item.className = "p-4 rounded-xl glass-panel border border-slate-800/80 hover:border-cyan-500/40 transition-all group flex flex-col justify-between";
+                item.innerHTML = `
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="p-2 rounded-lg bg-slate-900 text-cyan-400 group-hover:bg-cyan-500/10 transition-colors">
+                            <i data-lucide="${s.icon}" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/80 text-slate-400">${s.level}</span>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm text-white group-hover:text-cyan-400 transition-colors">${s.name}</div>
+                        <div class="text-[10px] font-mono text-slate-500 capitalize mt-0.5">${s.cat}</div>
+                    </div>
+                `;
+                container.appendChild(item);
             });
+            lucide.createIcons();
+        }
+
+        function filterSkills(cat) {
+            document.querySelectorAll('.skill-cat-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-400', 'text-slate-950');
+                btn.classList.add('glass-panel', 'text-slate-300');
+            });
+            event.target.classList.remove('glass-panel', 'text-slate-300');
+            event.target.classList.add('bg-cyan-400', 'text-slate-950');
+            renderSkills(cat);
+        }
+
+        // 4. Projects Showcase Data & Modal Detail Views
+        const projectsData = [
+            {
+                id: 'proj1',
+                title: "Enterprise Web Analytics Clickstream Pipeline",
+                category: "fabric",
+                tech: ["Microsoft Fabric", "PySpark", "Delta Lake", "DirectLake"],
+                desc: "High-throughput web analytics lakehouse converting unstructured user event telemetry into hourly Parquet tables with predicate pushdown and Z-Ordering optimizations.",
+                specs: [
+                    "Hourly UTC partition compaction reducing small file overhead by 80%",
+                    "DirectLake integration with Power BI for sub-second visual queries",
+                    "Delta Lake Z-Ordering on user_guid and event_timestamp",
+                    "Zero-copy cloning for staging environments"
+                ],
+                metrics: "10B+ Monthly Records • 45% Query Latency Speedup"
+            },
+            {
+                id: 'proj2',
+                title: "High-Throughput Real-Time Telemetry Engine",
+                category: "streaming",
+                tech: ["Azure Event Hubs", "Apache Kafka", "PySpark Streaming", "Azure Schema Registry"],
+                desc: "Scalable streaming ingestion service capturing live web checkout & transaction streams with automated schema evolution and SLA monitoring.",
+                specs: [
+                    "Structured Streaming with 5-minute event watermark state handling",
+                    "Automated bad-record isolation into dead-letter storage queues",
+                    "End-to-end latency kept under 12 milliseconds at peak load",
+                    "Azure DevOps CI/CD pipeline for automated PySpark DAG deployments"
+                ],
+                metrics: "<15ms Stream Latency • 99.99% Operational SLA"
+            },
+            {
+                id: 'proj3',
+                title: "Cloud Data Quality & Validation Governance Engine",
+                category: "quality",
+                tech: ["Great Expectations", "PySpark Assertions", "dbt", "Synapse"],
+                desc: "Automated enterprise data governance layer executing declarative quality assertions on raw ingestion layers prior to Silver tier downstream publication.",
+                specs: [
+                    "Automated schema validation against JSON schema registries",
+                    "Anomalous metric alert dispatching via Webhooks to Slack/Teams",
+                    "Automated lineage mapping from Bronze landing to Gold marts",
+                    "Daily data health scorecard dashboards in Power BI"
+                ],
+                metrics: "Zero Unhandled Schema Drift • 100% Quality Visibility"
+            }
+        ];
+
+        function renderProjects(filterTag) {
+            const container = document.getElementById('projectsGrid');
+            container.innerHTML = '';
+
+            const filtered = filterTag === 'all' ? projectsData : projectsData.filter(p => p.category === filterTag);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "p-6 rounded-2xl glass-panel border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between group cursor-pointer";
+                card.onclick = () => openProjectModal(p.id);
+
+                const techBadges = p.tech.map(t => `<span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300 text-[11px] font-mono">${t}</span>`).join('');
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-mono px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider font-semibold">${p.category}</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-2">${p.title}</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">${p.desc}</p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            ${techBadges}
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
+                        <span class="text-emerald-400 font-semibold">${p.metrics}</span>
+                        <span class="text-slate-400 group-hover:text-cyan-400">Inspect Specs →</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function filterProjects(tag) {
+            document.querySelectorAll('.proj-tag-btn').forEach(btn => {
+                btn.classList.remove('bg-cyan-400', 'text-slate-950');
+                btn.classList.add('glass-panel', 'text-slate-300');
+            });
+            event.target.classList.remove('glass-panel', 'text-slate-300');
+            event.target.classList.add('bg-cyan-400', 'text-slate-950');
+            renderProjects(tag);
+        }
+
+        function openProjectModal(id) {
+            const proj = projectsData.find(p => p.id === id);
+            if (!proj) return;
+
+            document.getElementById('modalCategory').innerText = proj.category;
+            document.getElementById('modalTitle').innerText = proj.title;
+            document.getElementById('modalDesc').innerText = proj.desc;
+            document.getElementById('modalMetrics').innerText = proj.metrics;
+
+            const specsList = document.getElementById('modalSpecs');
+            specsList.innerHTML = proj.specs.map(s => `<li>${s}</li>`).join('');
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // 5. Architecture Simulator Logic
+        let simInterval = null;
+        let isSimRunning = false;
+        let eventCounter = 0;
+
+        function toggleSimulator() {
+            const btnText = document.getElementById('simToggleText');
+            const playIcon = document.getElementById('simPlayIcon');
+
+            if (!isSimRunning) {
+                isSimRunning = true;
+                btnText.innerText = "Pause Stream";
+                playIcon.setAttribute("data-lucide", "pause");
+                
+                simInterval = setInterval(() => {
+                    eventCounter += Math.floor(Math.random() * 80) + 40;
+                    document.getElementById('simEventCount').innerText = eventCounter.toLocaleString();
+                    document.getElementById('simThroughput').innerText = (Math.floor(Math.random() * 1500) + 3200) + " msg/s";
+                    document.getElementById('simLatency').innerText = (Math.floor(Math.random() * 6) + 8) + "ms";
+                    document.getElementById('simRam').innerText = ((Math.random() * 1.5) + 3.2).toFixed(1) + " GB / 32 GB";
+
+                    document.getElementById('barBronze').style.width = Math.min((eventCounter % 100), 100) + "%";
+                    document.getElementById('barSilver').style.width = Math.min(((eventCounter + 35) % 100), 100) + "%";
+                    document.getElementById('barGold').style.width = Math.min(((eventCounter + 70) % 100), 100) + "%";
+                }, 350);
+            } else {
+                isSimRunning = false;
+                btnText.innerText = "Resume Stream Flow";
+                playIcon.setAttribute("data-lucide", "play");
+                clearInterval(simInterval);
+            }
+            lucide.createIcons();
+        }
+
+        function resetSimulator() {
+            if (isSimRunning) toggleSimulator();
+            eventCounter = 0;
+            document.getElementById('simEventCount').innerText = "0";
+            document.getElementById('simThroughput').innerText = "0 msg/s";
+            document.getElementById('barBronze').style.width = "0%";
+            document.getElementById('barSilver').style.width = "0%";
+            document.getElementById('barGold').style.width = "0%";
+        }
+
+        const stagePayloads = {
+            ingest: {
+                title: "1. EVENT INGESTION (AZURE EVENT HUBS / KAFKA STREAM)",
+                json: `{\n  "event_id": "evt_kafka_${Math.floor(Math.random()*89999+10000)}",\n  "topic": "clickstream_web_production",\n  "partition": 4,\n  "offset": 8849201,\n  "timestamp": "${new Date().toISOString()}"\n}`
+            },
+            bronze: {
+                title: "2. BRONZE TIER PAYLOAD (RAW DELTA LANDING)",
+                json: `{\n  "event_id": "evt_kafka_99482",\n  "ingested_utc": "${new Date().toISOString()}",\n  "raw_body": "{\\"user_guid\\":\\"usr_88392\\",\\"click_action\\":\\"purchase_checkout\\",\\"cart_value\\":184.50}",\n  "source": "Azure_Event_Hubs",\n  "file_path": "abfss://bronze@fabric.dfs.core.windows.net/2026/10/03/part-001.parquet"\n}`
+            },
+            silver: {
+                title: "3. SILVER TIER PAYLOAD (CLEANED & SCHEMATIZED)",
+                json: `{\n  "event_id": "evt_kafka_99482",\n  "user_guid": "usr_88392",\n  "click_action": "purchase_checkout",\n  "cart_value_usd": 184.50,\n  "is_valid_user": true,\n  "watermark_timestamp": "${new Date().toISOString()}"\n}`
+            },
+            gold: {
+                title: "4. GOLD TIER PAYLOAD (CURATED ANALYTICS MART)",
+                json: `{\n  "hourly_utc": "2026-10-03 16:00:00",\n  "total_checkouts": 1420,\n  "gross_revenue_usd": 261990.00,\n  "avg_session_duration_sec": 142.5,\n  "direct_lake_synced": true\n}`
+            }
+        };
+
+        function selectStage(stage) {
+            ['Ingest', 'Bronze', 'Silver', 'Gold'].forEach(s => {
+                const el = document.getElementById('stage' + s);
+                el.classList.remove('border-cyan-400', 'border-amber-400', 'border-emerald-400', 'border-blue-400');
+                el.classList.add('border-slate-800');
+            });
+
+            const activeEl = document.getElementById('stage' + stage.charAt(0).toUpperCase() + stage.slice(1));
+            const activeColor = stage === 'ingest' ? 'border-blue-400' : stage === 'bronze' ? 'border-amber-400' : stage === 'silver' ? 'border-cyan-400' : 'border-emerald-400';
+            activeEl.classList.remove('border-slate-800');
+            activeEl.classList.add(activeColor);
+
+            document.getElementById('inspectorStageTitle').innerText = stagePayloads[stage].title;
+            document.getElementById('inspectorContent').innerText = stagePayloads[stage].json;
+        }
+
+        // 6. Resume Downloader
+        function downloadResume() {
+            const element = document.createElement("a");
+            const file = new Blob([
+                "Vaibhav Yanati - SENIOR DATA ENGINEER & CLOUD ARCHITECT\n\n" +
+                "Summary:\nSenior Data Engineer specializing in Enterprise Lakehouse platforms, PySpark streaming, Microsoft Fabric, Databricks, and automated quality checks.\n\n" +
+                "Tech Stack:\nPySpark, Databricks, Microsoft Fabric, Delta Lake, Parquet, Kafka, Azure Data Factory, Power BI, SQL.\n"
+            ], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = "Alex_Rivera_Senior_Data_Engineer_Resume.txt";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // 7. Contact Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert("Thank you for reaching out! Alex will get back to you within 24 hours.");
+            e.target.reset();
         }
     </script>
 </body>
